@@ -1,0 +1,16 @@
+<html>
+
+<form action='/go/' method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+<h1> Past Games </h1>
+<h2> 
+{% for game in games %}
+<a href="/win/{{ game.pk }}"> {{ game.playername }} {{game.won }} </a> 
+<br>
+{% endfor %}
+</h2>
+</html>
