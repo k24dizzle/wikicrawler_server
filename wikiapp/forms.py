@@ -12,3 +12,4 @@ class StartForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(StartForm, self).__init__(*args, **kwargs)
+

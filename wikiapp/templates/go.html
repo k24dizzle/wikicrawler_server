@@ -1,12 +1,13 @@
 <html>
     <h1> Your goal is: {{ game.goal_name }} </h1>
     <h2> Your current page is: {{ game.current_name }} </h2>
-    <h3> {{ pages }} </h3>
-    <h4> Current path: {{ game.get_path }} </h4>
     <h3> 
     {% for page, url in pages.items %}
-    <a href="/{{ game.pk }}/{{ url }}"> {{ page }} </a> 
-    <br>
+    <form action='/{{game.pk}}/' method="post"> 
+        {% csrf_token %}
+        <input type="hidden" name="page_name" value="{{ page }}" />
+        <button> {{ page }} </button>
+    </form>
     {% endfor %}
     </h3>
 </html>

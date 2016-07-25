@@ -37,8 +37,9 @@ def go(request):
                'game': game}
     return render(request, 'go.html', context)
 
-def step(request, game_id, page_name):
+def step(request, game_id):
     game = WikiGame.objects.get(pk=game_id)
+    page_name = request.POST.__getitem__('page_name')
     page_name = page_name.replace('_', ' ')
     game.add_page(page_name)
     if game.won is not True:
