@@ -1,0 +1,11 @@
+<html>
+    <h1> The Longest Journey... </h1>
+    {% for path in max.get_path %}
+    <h1> {{ path }} </h1>
+    {% endfor %}
+    <h2> Most Visited Pages: </h2>
+    {% for visit in visits %} 
+    <h2> {{ visit.0 }} : {{ visit.1 }} </h2>
+    {% endfor %}
+</html>
+

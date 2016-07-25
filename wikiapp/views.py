@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import WikiPathStep
 from .models import WikiGame
-
+import operator
 from .forms import StartForm
 
 # Create your views here.
@@ -56,3 +56,27 @@ def step(request, game_id, page_name):
 def win(request, game_id):
     context = {'game': WikiGame.objects.get(pk=game_id)}
     return render(request, 'win.html', context)
+
+def stat(request):
+    games = WikiGame.objects.all()
+    pages = WikiPathStep.objects.all()
+    maxx = 0
+    max_game = None
+    for game in games:
+        steps = len(game.get_path())
+        if steps > maxx:
+            maxx = steps
+            max_game = game
+    page_visits = {}
+    for page in pages:
+        if page.page_name in page_visits:
+            page_visits[page.page_name] = page_visits[page.page_name] + 1
+        else:
+            page_visits[page.page_name] = 1
+    page_sort = sorted(page_visits.items(), key=operator.itemgetter(1), reverse=True)
+    if len(page_sort) >= 11:
+        del page_sort[-(len(page_sort) - 10):]
+    context = {'max': max_game,
+                'visits': page_sort,
+                }
+    return render(request, 'stat.html', context)
