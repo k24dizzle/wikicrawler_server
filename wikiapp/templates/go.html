@@ -3,8 +3,10 @@
 <html>
 <head>
     <title> WikiCrawler </title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/all.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/go.css' %}">
 </head>
 
 </head>
@@ -26,8 +28,10 @@
     {% for page, url in pages.items %}
     <form action='/{{game.pk}}/' method="post"> 
         {% csrf_token %}
+        <div id="choice">
         <input type="hidden" name="page_name" value="{{ page }}" />
-        <button> {{ page }} </button>
+        <button type="button" class="btn btn-success"> {{ page }} </button>
+        </div>
     </form>
     {% endfor %}
     </h3>
