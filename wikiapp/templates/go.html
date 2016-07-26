@@ -1,4 +1,14 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html>
+<head>
+    <title> WikiCrawler </title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" />
+</head>
+
+</head>
+<body>
    {% if game.won %}
     <h1> you won! :D </h1>
     <h2> here's the journey that you took </h2>
@@ -22,4 +32,5 @@
     {% endfor %}
     </h3>
     {% endif %}
+</body>
 </html>

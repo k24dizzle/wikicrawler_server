@@ -1,4 +1,13 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html>
+    <head>
+    <title> WikiCrawler </title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" />
+    </head>
+
+    <body>
     <h1> The Longest Journey... </h1>
     {% for path in max.get_path %}
     <h1> {{ path }} </h1>
@@ -7,5 +16,6 @@
     {% for visit in visits %} 
     <h2> {{ visit.0 }} : {{ visit.1 }} </h2>
     {% endfor %}
+    </body>
 </html>
 

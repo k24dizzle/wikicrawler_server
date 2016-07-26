@@ -1,4 +1,13 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html>
+<head>
+    <title> WikiCrawler </title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" />
+</head>
+<body>
+<h1 id="title"> Welcome to WikiCrawler! </h1>
 
 <form action='/go/' method="post">
     {% csrf_token %}
@@ -14,4 +23,5 @@
 {% endfor %}
 </h2>
 <a href='/stat/'> Statistics </a>
+</body>
 </html>

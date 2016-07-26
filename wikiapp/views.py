@@ -16,7 +16,6 @@ def index(request):
 
 def go(request):
     print 'yo'
-    print request.path
     if request.method == "POST":
         form = StartForm(request.POST)
         if form.is_valid():
@@ -26,16 +25,10 @@ def go(request):
             starting_page = request.POST.__getitem__('starting_page')
             game = WikiGame.create(name, difficulty, starting_page)
             game.save()
-            pages = game.get_ten()
         else:
             print 'form wasnt valid'
             return render(request, 'index.html')
-    both = {}
-    for page in pages:
-        both[page] = page.replace(' ', '_')
-    context = {'pages': both,
-               'game': game}
-    return render(request, 'go.html', context)
+    return HttpResponseRedirect('/' + str(game.pk) + '/')
 
 def step(request, game_id):
     game = WikiGame.objects.get(pk=game_id)
