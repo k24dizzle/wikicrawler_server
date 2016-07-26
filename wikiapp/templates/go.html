@@ -1,4 +1,15 @@
 <html>
+   {% if game.won %}
+    <h1> you won! :D </h1>
+    <h2> here's the journey that you took </h2>
+    <h2> Goal Page: {{ game.goal_name }} </h2>
+    <h3> 
+    {% for path in game.get_path %}
+        <p> {{ path }}</p>    
+    {% endfor %}
+    </h3>
+    <a href="/"> Play Again? </a> 
+    {% else %}
     <h1> Your goal is: {{ game.goal_name }} </h1>
     <h2> Your current page is: {{ game.current_name }} </h2>
     <h3> 
@@ -10,4 +21,5 @@
     </form>
     {% endfor %}
     </h3>
+    {% endif %}
 </html>

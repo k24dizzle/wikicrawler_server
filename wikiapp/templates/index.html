@@ -9,7 +9,7 @@
 <h1> Past Games </h1>
 <h2> 
 {% for game in games %}
-<a href="/win/{{ game.pk }}"> {{ game.playername }} {{game.won }} </a> 
+<a href="/{{ game.pk }}/"> {{ game.playername }} {{game.won }} </a> 
 <br>
 {% endfor %}
 </h2>

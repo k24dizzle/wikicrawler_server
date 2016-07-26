@@ -39,10 +39,23 @@ def go(request):
 
 def step(request, game_id):
     game = WikiGame.objects.get(pk=game_id)
-    page_name = request.POST.__getitem__('page_name')
-    page_name = page_name.replace('_', ' ')
-    game.add_page(page_name)
-    if game.won is not True:
+    print request.method
+    if request.method=="POST":
+        page_name = request.POST['page_name']
+        page_name = page_name.replace('_', ' ')
+        game.add_page(page_name)
+        if game.won is not True:
+            pages = game.get_ten()
+            both = {}
+            for page in pages:
+                both[page] = page.replace(' ', '_')
+            context = {'game': game,
+                    'pages': both}
+            return render(request, 'go.html', context)
+        else:
+            context = {'game': game}
+            return render(request, 'go.html', context)
+    else:
         pages = game.get_ten()
         both = {}
         for page in pages:
@@ -50,13 +63,6 @@ def step(request, game_id):
         context = {'game': game,
                     'pages': both}
         return render(request, 'go.html', context)
-    else:
-        context = {'game': game}
-        return HttpResponseRedirect('/win/' + game_id)
-
-def win(request, game_id):
-    context = {'game': WikiGame.objects.get(pk=game_id)}
-    return render(request, 'win.html', context)
 
 def stat(request):
     games = WikiGame.objects.all()
