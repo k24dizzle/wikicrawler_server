@@ -33,6 +33,7 @@ def go(request):
 def step(request, game_id):
     game = WikiGame.objects.get(pk=game_id)
     print request.method
+    print 'hey!'
     if request.method=="POST":
         page_name = request.POST['page_name']
         page_name = page_name.replace('_', ' ')
