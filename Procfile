@@ -1,1 +1,1 @@
-web: gunicorn wikicrawler-server.wsgi --log-file -
+web: gunicorn wikicrawler_server.wsgi --log-file -
