@@ -27,7 +27,9 @@ def go(request):
             game.save()
         else:
             print 'form wasnt valid'
-            return render(request, 'index.html')
+            form = StartForm()
+            context = {'form': form}
+            return render(request, 'index.html', context)
     return HttpResponseRedirect('/' + str(game.pk) + '/')
 
 def step(request, game_id):
