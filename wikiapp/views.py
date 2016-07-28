@@ -25,12 +25,16 @@ def go(request):
             starting_page = request.POST.__getitem__('starting_page')
             game = WikiGame.create(name, difficulty, starting_page)
             game.save()
+            return HttpResponseRedirect('/' + str(game.pk) + '/')
         else:
             print 'form wasnt valid'
             form = StartForm()
-            context = {'form': form}
+            games = WikiGame.objects.all()
+            context = {'form': form,
+                        'games': games,
+                        'alert': True}
             return render(request, 'index.html', context)
-    return HttpResponseRedirect('/' + str(game.pk) + '/')
+    return HttpResponseRedirect('/')
 
 def step(request, game_id):
     game = WikiGame.objects.get(pk=game_id)
