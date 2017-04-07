@@ -15,7 +15,7 @@ class WikiGame(models.Model):
     potential_goals = {
         'Easy': ['Rome', 'World War II', 'Adolf Hitler'],
         'Medium': ['Barack Obama', 'Fiji'],
-        'Hard': ['NBA', 'Kareem Abdul Jabbar'],
+        'Hard': ['NBA', 'Kareem Abdul-Jabbar'],
     }
     @property
     def goal(self):
